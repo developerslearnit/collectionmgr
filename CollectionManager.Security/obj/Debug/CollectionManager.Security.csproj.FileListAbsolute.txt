@@ -1,0 +1,10 @@
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\CollectionManager.Security.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\CollectionManager.Security.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\obj\Debug\CollectionManager.Security.csprojResolveAssemblyReference.cache
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\obj\Debug\CollectionManager.Security.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\obj\Debug\CollectionManager.Security.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\CollectionManager.Security.dll.config
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\EntityFramework.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\EntityFramework.SqlServer.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\EntityFramework.xml
+C:\dev\WebApp\CollectionManager\CollectionManager.Security\bin\Debug\EntityFramework.SqlServer.xml

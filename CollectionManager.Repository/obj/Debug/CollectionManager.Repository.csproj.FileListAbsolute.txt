@@ -1,0 +1,13 @@
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Repository.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Repository.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\obj\Debug\CollectionManager.Repository.csprojResolveAssemblyReference.cache
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\obj\Debug\CollectionManager.Repository.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\obj\Debug\CollectionManager.Repository.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Repository.dll.config
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Data.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Data.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Data.dll.config
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.xml
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.SqlServer.xml

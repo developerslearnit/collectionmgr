@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group pull-right">
+                    <a href="#" id="addNew" class="btn btn-primary">Add New</a>
+                    <a href="#" id="delete" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+      
+    </div>
+</div>
+
+
+<div id="vForm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Vehicle Type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Type
+                        </label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="vtype" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" id="save">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+   function saveVehicleType(data) {
+            return $.ajax({
+                type: "POST",
+                url: "@Url.Action("addVehicleType", "Home", new { area=""})",
+                data: data,
+                dataType: 'json',
+                contentType:'application/json;charset=utf-8'
+            });
+        }
+
+
+        $(function () {
+
+            $("#addNew").click(function (e) {
+                e.preventDefault();
+
+                $("#vForm").modal("show");
+            });
+
+            $("#save").click(function (e) {
+
+                var data = JSON.stringify({
+                    vehicleId: 0,
+                    vehicleName: $("#vtype").val(),
+                    createdBy: 0,
+                    lastUpdatedBy:0
+                });
+
+                $.when(saveVehicleType(data)).then(function (res) {
+                    console.log(res);
+
+                    if (res.error == false) {
+                        console.log(res.message);
+                    } else {
+                        console.log(res.message);
+                    }
+                }).fail(function (err) {
+                    console.log(err);
+                });
+
+            })
+
+
+        });
+
+
+    </script>
+
+}

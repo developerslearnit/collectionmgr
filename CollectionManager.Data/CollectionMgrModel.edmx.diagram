@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="663f25fedb274eb283b8fea86d5ad201" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="CollectionManagerModel.BloodGroup" Width="1.5" PointX="6.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.CheckList" Width="1.5" PointX="9" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.CheckListResult" Width="1.5" PointX="11.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.CollectionDetail" Width="1.5" PointX="14.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.CollectionType" Width="1.5" PointX="6.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.Contribution" Width="1.5" PointX="11.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.Customer" Width="1.5" PointX="9" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.Guarantor" Width="1.5" PointX="14.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.Lga" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.User" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.UserUnit" Width="1.5" PointX="6.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.UserUnitHistory" Width="1.5" PointX="6.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.VechicleDetail" Width="1.5" PointX="11.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollectionManagerModel.VehicleType" Width="1.5" PointX="7.375" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="CollectionManagerModel.FK_BloodGroup_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Customer_BloodGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CheckList_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CheckList_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CheckListResult_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CheckListResult_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CollectionDetails_CollectionType" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CollectionDetails_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CollectionDetails_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_CollectionType_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Contribution_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Contribution_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Customer_Lga" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Customer_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Guarantor_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_VechicleDetails_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Guarantor_Guarantor" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Guarantor_LGA" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_UserUnit_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_UserUnitHistory_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_VechicleDetails_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CollectionManagerModel.FK_VehicleType_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CollectionManagerModel.Document" Width="1.5" PointX="11.25" PointY="14.5" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Document_Customer" />
+        <AssociationConnector Association="CollectionManagerModel.FK_Document_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CollectionManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BloodGroup">
+    <Key>
+      <PropertyRef Name="BloodGroupId" />
+    </Key>
+    <Property Name="BloodGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BloodGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_BloodGroup_User" FromRole="BloodGroup" ToRole="Users" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_BloodGroup" FromRole="BloodGroup" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="CheckList">
+    <Key>
+      <PropertyRef Name="CheckListId" />
+    </Key>
+    <Property Name="CheckListId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <Property Name="CheckListName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CheckList_User" FromRole="CheckList" ToRole="Users" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK_CheckList_Vehicle" FromRole="CheckList" ToRole="VehicleType" />
+  </EntityType>
+  <EntityType Name="CheckListResult">
+    <Key>
+      <PropertyRef Name="CheckListResultId" />
+    </Key>
+    <Property Name="CheckListResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Result" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CheckListResult_Customer" FromRole="CheckListResult" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CheckListResult_User" FromRole="CheckListResult" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CollectionDetail">
+    <Key>
+      <PropertyRef Name="CollectionId" />
+    </Key>
+    <Property Name="CollectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CollectionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Narration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CollectionType" Relationship="Self.FK_CollectionDetails_CollectionType" FromRole="CollectionDetails" ToRole="CollectionType" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CollectionDetails_Customer" FromRole="CollectionDetails" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CollectionDetails_User" FromRole="CollectionDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CollectionType">
+    <Key>
+      <PropertyRef Name="CollectionTypeId" />
+    </Key>
+    <Property Name="CollectionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CollectionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CollectionDetails" Relationship="Self.FK_CollectionDetails_CollectionType" FromRole="CollectionType" ToRole="CollectionDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CollectionType_User" FromRole="CollectionType" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Contribution">
+    <Key>
+      <PropertyRef Name="ContributionId" />
+    </Key>
+    <Property Name="ContributionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DebitAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="CreditAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Narration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Contribution_Customer" FromRole="Contribution" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Contribution_User" FromRole="Contribution" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LgaId" Type="Int32" Nullable="false" />
+    <Property Name="BloodGroupId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BloodGroup" Relationship="Self.FK_Customer_BloodGroup" FromRole="Customer" ToRole="BloodGroup" />
+    <NavigationProperty Name="CheckListResults" Relationship="Self.FK_CheckListResult_Customer" FromRole="Customer" ToRole="CheckListResult" />
+    <NavigationProperty Name="CollectionDetails" Relationship="Self.FK_CollectionDetails_Customer" FromRole="Customer" ToRole="CollectionDetails" />
+    <NavigationProperty Name="Contributions" Relationship="Self.FK_Contribution_Customer" FromRole="Customer" ToRole="Contribution" />
+    <NavigationProperty Name="Lga" Relationship="Self.FK_Customer_Lga" FromRole="Customer" ToRole="Lga" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="Users" />
+    <NavigationProperty Name="Guarantors" Relationship="Self.FK_Guarantor_Customer" FromRole="Customer" ToRole="Guarantor" />
+    <NavigationProperty Name="VechicleDetails" Relationship="Self.FK_VechicleDetails_Customer" FromRole="Customer" ToRole="VechicleDetails" />
+    <NavigationProperty Name="Documents" Relationship="CollectionManagerModel.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
+  </EntityType>
+  <EntityType Name="Guarantor">
+    <Key>
+      <PropertyRef Name="GuarantorId" />
+    </Key>
+    <Property Name="GuarantorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LgaId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Guarantor_Customer" FromRole="Guarantor" ToRole="Customer" />
+    <NavigationProperty Name="Guarantor1" Relationship="Self.FK_Guarantor_Guarantor" FromRole="Guarantor" ToRole="Guarantor1" />
+    <NavigationProperty Name="Guarantor2" Relationship="Self.FK_Guarantor_Guarantor" FromRole="Guarantor1" ToRole="Guarantor" />
+    <NavigationProperty Name="Lga" Relationship="Self.FK_Guarantor_LGA" FromRole="Guarantor" ToRole="Lga" />
+  </EntityType>
+  <EntityType Name="Lga">
+    <Key>
+      <PropertyRef Name="LgaId" />
+    </Key>
+    <Property Name="LgaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LgaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Lga" FromRole="Lga" ToRole="Customer" />
+    <NavigationProperty Name="Guarantors" Relationship="Self.FK_Guarantor_LGA" FromRole="Lga" ToRole="Guarantor" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsFirstLoginAttempt" Type="Boolean" />
+    <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+    <Property Name="FailedLogonAttempt" Type="Int32" />
+    <Property Name="SecurityQuestion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NextPasswordChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DeactivatedDate" Type="DateTime" Precision="3" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BloodGroups" Relationship="Self.FK_BloodGroup_User" FromRole="Users" ToRole="BloodGroup" />
+    <NavigationProperty Name="CheckLists" Relationship="Self.FK_CheckList_User" FromRole="Users" ToRole="CheckList" />
+    <NavigationProperty Name="CheckListResults" Relationship="Self.FK_CheckListResult_User" FromRole="Users" ToRole="CheckListResult" />
+    <NavigationProperty Name="CollectionDetails" Relationship="Self.FK_CollectionDetails_User" FromRole="Users" ToRole="CollectionDetails" />
+    <NavigationProperty Name="CollectionTypes" Relationship="Self.FK_CollectionType_User" FromRole="Users" ToRole="CollectionType" />
+    <NavigationProperty Name="Contributions" Relationship="Self.FK_Contribution_User" FromRole="Users" ToRole="Contribution" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_User" FromRole="Users" ToRole="Customer" />
+    <NavigationProperty Name="UserUnit" Relationship="Self.FK_UserUnit_User" FromRole="Users" ToRole="UserUnit" />
+    <NavigationProperty Name="UserUnitHistory" Relationship="Self.FK_UserUnitHistory_User" FromRole="Users" ToRole="UserUnitHistory" />
+    <NavigationProperty Name="VechicleDetails" Relationship="Self.FK_VechicleDetails_User" FromRole="Users" ToRole="VechicleDetails" />
+    <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_User" FromRole="Users" ToRole="VehicleType" />
+    <NavigationProperty Name="Documents" Relationship="CollectionManagerModel.FK_Document_Users" FromRole="User" ToRole="Document" />
+  </EntityType>
+  <EntityType Name="UserUnit">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserUnit_User" FromRole="UserUnit" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserUnitHistory">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitPurchased" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserUnitHistory_User" FromRole="UserUnitHistory" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="VechicleDetail">
+    <Key>
+      <PropertyRef Name="VehicleDetailsId" />
+    </Key>
+    <Property Name="VehicleDetailsId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleLienceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehiclePlateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleInsuranceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HackneyPermitNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RiderCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_VechicleDetails_Customer" FromRole="VechicleDetails" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_VechicleDetails_User" FromRole="VechicleDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CheckLists" Relationship="Self.FK_CheckList_Vehicle" FromRole="VehicleType" ToRole="CheckList" />
+    <NavigationProperty Name="User" Relationship="Self.FK_VehicleType_User" FromRole="VehicleType" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_BloodGroup_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="BloodGroup" Type="Self.BloodGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="BloodGroup">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_BloodGroup">
+    <End Role="BloodGroup" Type="Self.BloodGroup" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BloodGroup">
+        <PropertyRef Name="BloodGroupId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="BloodGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckList_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CheckList" Type="Self.CheckList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CheckList">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckList_Vehicle">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+    <End Role="CheckList" Type="Self.CheckList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="CheckList">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckListResult_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CheckListResult" Type="Self.CheckListResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CheckListResult">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckListResult_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CheckListResult" Type="Self.CheckListResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CheckListResult">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectionDetails_CollectionType">
+    <End Role="CollectionType" Type="Self.CollectionType" Multiplicity="1" />
+    <End Role="CollectionDetails" Type="Self.CollectionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CollectionType">
+        <PropertyRef Name="CollectionTypeId" />
+      </Principal>
+      <Dependent Role="CollectionDetails">
+        <PropertyRef Name="CollectionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectionDetails_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CollectionDetails" Type="Self.CollectionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CollectionDetails">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectionDetails_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CollectionDetails" Type="Self.CollectionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CollectionDetails">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectionType_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CollectionType" Type="Self.CollectionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CollectionType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contribution_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Contribution" Type="Self.Contribution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Contribution">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contribution_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Contribution" Type="Self.Contribution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Contribution">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Lga">
+    <End Role="Lga" Type="Self.Lga" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lga">
+        <PropertyRef Name="LgaId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="LgaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guarantor_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Guarantor" Type="Self.Guarantor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Guarantor">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VechicleDetails_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="VechicleDetails" Type="Self.VechicleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="VechicleDetails">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guarantor_Guarantor">
+    <End Role="Guarantor" Type="Self.Guarantor" Multiplicity="1" />
+    <End Role="Guarantor1" Type="Self.Guarantor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Guarantor">
+        <PropertyRef Name="GuarantorId" />
+      </Principal>
+      <Dependent Role="Guarantor1">
+        <PropertyRef Name="GuarantorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guarantor_LGA">
+    <End Role="Lga" Type="Self.Lga" Multiplicity="1" />
+    <End Role="Guarantor" Type="Self.Guarantor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lga">
+        <PropertyRef Name="LgaId" />
+      </Principal>
+      <Dependent Role="Guarantor">
+        <PropertyRef Name="LgaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUnit_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserUnit" Type="Self.UserUnit" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserUnit">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUnitHistory_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserUnitHistory" Type="Self.UserUnitHistory" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserUnitHistory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VechicleDetails_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="VechicleDetails" Type="Self.VechicleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="VechicleDetails">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleType_User">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="VehicleType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CollectionManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BloodGroups" EntityType="Self.BloodGroup" />
+    <EntitySet Name="CheckLists" EntityType="Self.CheckList" />
+    <EntitySet Name="CheckListResults" EntityType="Self.CheckListResult" />
+    <EntitySet Name="CollectionDetails" EntityType="Self.CollectionDetail" />
+    <EntitySet Name="CollectionTypes" EntityType="Self.CollectionType" />
+    <EntitySet Name="Contributions" EntityType="Self.Contribution" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Guarantors" EntityType="Self.Guarantor" />
+    <EntitySet Name="Lgas" EntityType="Self.Lga" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserUnits" EntityType="Self.UserUnit" />
+    <EntitySet Name="UserUnitHistories" EntityType="Self.UserUnitHistory" />
+    <EntitySet Name="VechicleDetails" EntityType="Self.VechicleDetail" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+    <AssociationSet Name="FK_BloodGroup_User" Association="Self.FK_BloodGroup_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BloodGroup" EntitySet="BloodGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_BloodGroup" Association="Self.FK_Customer_BloodGroup">
+      <End Role="BloodGroup" EntitySet="BloodGroups" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckList_User" Association="Self.FK_CheckList_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CheckList" EntitySet="CheckLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckList_Vehicle" Association="Self.FK_CheckList_Vehicle">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="CheckList" EntitySet="CheckLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckListResult_Customer" Association="Self.FK_CheckListResult_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CheckListResult" EntitySet="CheckListResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckListResult_User" Association="Self.FK_CheckListResult_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CheckListResult" EntitySet="CheckListResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectionDetails_CollectionType" Association="Self.FK_CollectionDetails_CollectionType">
+      <End Role="CollectionType" EntitySet="CollectionTypes" />
+      <End Role="CollectionDetails" EntitySet="CollectionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectionDetails_Customer" Association="Self.FK_CollectionDetails_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CollectionDetails" EntitySet="CollectionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectionDetails_User" Association="Self.FK_CollectionDetails_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CollectionDetails" EntitySet="CollectionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectionType_User" Association="Self.FK_CollectionType_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CollectionType" EntitySet="CollectionTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contribution_Customer" Association="Self.FK_Contribution_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Contribution" EntitySet="Contributions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contribution_User" Association="Self.FK_Contribution_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contribution" EntitySet="Contributions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Lga" Association="Self.FK_Customer_Lga">
+      <End Role="Lga" EntitySet="Lgas" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guarantor_Customer" Association="Self.FK_Guarantor_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Guarantor" EntitySet="Guarantors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VechicleDetails_Customer" Association="Self.FK_VechicleDetails_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="VechicleDetails" EntitySet="VechicleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guarantor_Guarantor" Association="Self.FK_Guarantor_Guarantor">
+      <End Role="Guarantor" EntitySet="Guarantors" />
+      <End Role="Guarantor1" EntitySet="Guarantors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guarantor_LGA" Association="Self.FK_Guarantor_LGA">
+      <End Role="Lga" EntitySet="Lgas" />
+      <End Role="Guarantor" EntitySet="Guarantors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUnit_User" Association="Self.FK_UserUnit_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserUnit" EntitySet="UserUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUnitHistory_User" Association="Self.FK_UserUnitHistory_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserUnitHistory" EntitySet="UserUnitHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VechicleDetails_User" Association="Self.FK_VechicleDetails_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VechicleDetails" EntitySet="VechicleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleType_User" Association="Self.FK_VehicleType_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+    </AssociationSet>
+    <EntitySet Name="Documents" EntityType="CollectionManagerModel.Document" />
+    <AssociationSet Name="FK_Document_Customer" Association="CollectionManagerModel.FK_Document_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Users" Association="CollectionManagerModel.FK_Document_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="FileExtension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileByte" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="DocumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="DateTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="CollectionManagerModel.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="CollectionManagerModel.FK_Document_Users" FromRole="Document" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Document_Customer">
+    <End Type="CollectionManagerModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="CollectionManagerModel.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Users">
+    <End Type="CollectionManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="CollectionManagerModel.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
