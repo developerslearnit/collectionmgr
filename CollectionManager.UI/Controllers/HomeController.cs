@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace CollectionManager.UI.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         IVehicleTypeRepository repo;
@@ -19,6 +20,7 @@ namespace CollectionManager.UI.Controllers
         {
             this.repo = _repo;
         }
+
 
         public ActionResult Index()
         {

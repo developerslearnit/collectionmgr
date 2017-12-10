@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-3">
+                <h2></h2>
+            </div>
+
+            <div style="margin-top:4px" class="col-md-7">
+                <div class="pull-right">
+                    <select style="width:200px" class="form-control form-white" id="selectStatus">
+                        <option value="All">Filter</option>
+                        <option value="Active">Active</option>
+                        <option value="InActive">InActive</option>
+                        <option value="Locked">Locked</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a id="addNew" href="#" class="btn btn-primary">Add New</a>
+                        <a href="#" class="btn btn-default">Modify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="usersTable" class="table table-hover table-bordered" cellspacing="0" style="width:100%">
+                <thead class="table-header">
+
+                    <tr>
+
+                        <th style="display:none"></th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Is Active</th>
+                        <th>Last Login</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <thead id="searchHeader">
+                    <tr>
+
+                        <th style="display:none"></th>
+                        <th><input type="text" data-column="1" class="form-control search-input" /></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="width:4%"></th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="userModal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">New User</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Username
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="username" />
+                        </div>
+
+                        <label class="control-label col-md-2">
+                            Password
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="password" id="password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Secret Question
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="secretquestion" />
+                        </div>
+
+                        <label class="control-label col-md-2">
+                            Password
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="secretanswer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="saveData">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            var getUserUrl = '@Url.Action("GetUsers", "users",new { area = "admin" })';
+
+            function ResetTable() {
+                $('.dataTables_filter input').attr('placeholder', 'Search...').hide();
+                $('.dataTables_filter').hide();
+                //DOM Manipulation to move datatable elements integrate to panel
+               // $('.panel-footer').append($('.dataTables_filter').addClass("pull-right")).find("label").addClass("panel-ctrls-center");
+               // $('.panel-footer').append("<i class='separator'></i>");
+                //$('.panel-footer').append($('.dataTables_length').addClass("pull-left")).find("label").addClass("panel-ctrls-center");
+
+                //$('.panel-footer').append($(".dataTable+.row"));
+                //$('.dataTables_paginate>ul.pagination').addClass("pull-right m-n");
+            }
+
+
+            var table = $("#usersTable").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                //"dom": '<"top"i>rt<"bottom"lp><"clear">',
+                "ajax": {
+                    "url": getUserUrl,
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": function (arg) {
+                        arg.status = $("#selectStatus").val();
+                    }
+                },
+                "columns": [
+                    { "data": "UserId", "name": "UserId", "visible": false, "autoWidth": true },
+                    { "data": "Username", "name": "Username", "visible": true, "autoWidth": true },
+                    { "data": "IsLocked", "name": "IsLocked", "autoWidth": true },
+                    { "data": "IsActive", "name": "IsActive", "autoWidth": true },
+                    { "data": "LastLoginDate", "name": "LastLoginDate", "autoWidth": true },
+                    { "data": null, "name": "Action", "defaultContent": '<a href="#" class="viewLink"><i class="fa fa-eye"></i></a>', "autoWidth": true }
+
+                ]
+
+            });
+
+            //new FixedHeader(table);
+
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data-column'),
+                    val = $(this).val();
+                table.columns(index).search(val.trim()).draw();
+            });
+
+            ResetTable();
+
+            $("#selectStatus").change(function () {
+                table.draw();
+            });
+
+
+            $("#addNew").click(function (e) {
+                e.preventDefault();
+
+                $("#userModal").modal('show');
+            });
+
+
+            function saveUser(data) {
+                  return $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("saveUser", "users", new { area="admin"})",
+                    data: data,
+                    dataType: 'json',
+                    contentType:'application/json;charset=utf-8'
+                });
+            }
+
+
+            function clearControls() {
+                $("#username").val('');
+                $("#password").val('');
+                $("#secretquestion").val('');
+                $("#secretanswer").val('');
+            }
+
+            $("#saveData").click(function () {
+                var data = JSON.stringify({
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    securityQuestion: $("#secretquestion").val(),
+                    securityAnswer: $("#secretanswer").val()
+                })
+
+                $.when(saveUser(data)).then(function (response) {
+                    if (response.error == false) {
+                        clearControls();
+                        swal({
+                            type: 'success',
+                            title: response.message
+                        });
+                        table.draw();
+                    } else {
+                        swal({
+                            type: 'error',
+                            title: response.message
+                        });
+                    }
+                    
+                }).fail(function (err) {
+                    swal({
+                        type: 'error',
+                        title: response.message
+                    });
+                });
+            });
+
+
+        });
+
+    </script>
+
+}
+
+

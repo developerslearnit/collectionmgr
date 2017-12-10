@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-3">
+                <h2></h2>
+            </div>
+
+            <div style="margin-top:4px" class="col-md-7">
+                @*<div class="pull-right">
+                        <select style="width:200px" class="form-control form-white" id="selectStatus">
+                            <option value="All">Filter</option>
+                            <option value="Active">Active</option>
+                            <option value="InActive">InActive</option>
+                            <option value="Locked">Locked</option>
+                        </select>
+                    </div>*@
+            </div>
+            <div class="col-md-2">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a id="addNew" href="#" class="btn btn-primary">Add New</a>
+                        <a href="#" class="btn btn-default">Modify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="customersTable" class="table table-hover table-bordered" cellspacing="0" style="width:100%">
+                <thead class="table-header">
+
+                    <tr>
+
+                        <th style="display:none"></th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Blood Group</th>
+                        <th>LGA</th>
+                        <th></th>
+
+
+                    </tr>
+                </thead>
+                <thead id="searchHeader">
+                    <tr>
+
+                        <th style="display:none"></th>
+                        <th><input type="text" data-column="1" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="2" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="3" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="4" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="5" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="6" class="form-control search-input" /></th>
+                        <th><input type="text" data-column="7" class="form-control search-input" /></th>
+                        <th style="width:4%"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="customerodal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-xmd">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">New Customer</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            First Name
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="firstName" />
+                        </div>
+
+                        <label class="control-label col-md-2">
+                            Middle Name
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="middleName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Last Name
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="lastName" />
+                        </div>
+
+                        <label class="control-label col-md-2">
+                            Phone
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="phone" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Email
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="email" id="email" />
+                        </div>
+
+                        <label class="control-label col-md-2">
+                            Blood Group
+                        </label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("bloodGroup", (SelectList)ViewBag.bg, new { @class = "select2 form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            Local Govt
+                        </label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("lga", (SelectList)ViewBag.lga, new { @class= "select2 form-control" })
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="saveData">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+
+
+
+            var _url = '@Url.Action("GetCustomers", "customer",new { area = "admin" })';
+
+            function ResetTable() {
+                $('.dataTables_filter input').attr('placeholder', 'Search...').hide();
+                $('.dataTables_filter').hide();
+                //DOM Manipulation to move datatable elements integrate to panel
+               // $('.panel-footer').append($('.dataTables_filter').addClass("pull-right")).find("label").addClass("panel-ctrls-center");
+               // $('.panel-footer').append("<i class='separator'></i>");
+                //$('.panel-footer').append($('.dataTables_length').addClass("pull-left")).find("label").addClass("panel-ctrls-center");
+
+                //$('.panel-footer').append($(".dataTable+.row"));
+                //$('.dataTables_paginate>ul.pagination').addClass("pull-right m-n");
+            }
+
+
+            var table = $("#customersTable").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                //"dom": '<"top"i>rt<"bottom"lp><"clear">',
+                "ajax": {
+                    "url": _url,
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": function (arg) {
+                        arg.status = $("#selectStatus").val();
+                    }
+                },
+                "columns": [
+                    { "data": "customerId", "name": "customerId", "visible": false, "autoWidth": true },
+                    { "data": "firstName", "name": "firstName", "visible": true, "autoWidth": true },
+                    { "data": "middleName", "name": "middleName", "autoWidth": true },
+                    { "data": "lastName", "name": "lastName", "autoWidth": true },
+                    { "data": "email", "name": "email", "autoWidth": true },
+                    { "data": "phone", "name": "phone", "autoWidth": true },
+                    { "data": "bloodGroupName", "name": "bloodGroupName", "autoWidth": true },
+                    { "data": "lgaName", "name": "lgaName", "autoWidth": true },
+                    { "data": null, "name": "Action", "defaultContent": '<a href="#" class="viewLink"><i class="fa fa-eye"></i></a>', "autoWidth": true }
+
+                ]
+
+            });
+
+            //new FixedHeader(table);
+
+            $('.search-input').on('keyup change', function () {
+                var index = $(this).attr('data-column'),
+                    val = $(this).val();
+                table.columns(index).search(val.trim()).draw();
+            });
+
+            ResetTable();
+
+
+
+            $("#addNew").click(function (e) {
+                e.preventDefault();
+                clearControls();
+                $("#customerodal").modal('show');
+            });
+
+               function saveCustomer(data) {
+                  return $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("saveCustomer", "customer", new { area="admin"})",
+                    data: data,
+                    dataType: 'json',
+                    contentType:'application/json;charset=utf-8'
+                });
+            }
+
+
+               function clearControls() {
+                   $("#firstName").val('');
+                   $("#middleName").val('');
+                   $("#lastName").val('');
+                   $("#phone").val('');
+                   $("#email").val('');
+               }
+
+               $("#saveData").click(function () {
+
+                SiteUtils.loading("Wait..");
+                var data = {
+                    firstName: $("#firstName").val(),
+                    middleName: $("#middleName").val(),
+                    lastName: $("#lastName").val(),
+                    lgaId: $("#lga").val(),
+                    bloodGroupId: $("#bloodGroup").val(),
+                    phone: $("#phone").val(),
+                    email: $("#email").val()
+                };
+
+                data = JSON.stringify(data);
+
+                $.when(saveCustomer(data)).then(function (response) {
+                    SiteUtils.loadingOff();
+                    if (response.error == false) {
+                        clearControls();
+                        swal({
+                            type: 'success',
+                            title: response.message
+                        });
+                        table.draw();
+                    } else {
+                        swal({
+                            type: 'error',
+                            title: response.message
+                        });
+                    }
+
+                }).fail(function (err) {
+                    SiteUtils.loadingOff();
+                    swal({
+                        type: 'error',
+                        title: response.message
+                    });
+                });
+
+            });
+
+
+        });
+
+    </script>
+}
+
+

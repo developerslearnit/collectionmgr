@@ -64,6 +64,10 @@ namespace CollectionManager.UI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IVehicleTypeRepository>().To<VehicleTypeRepository>();
-        }        
+            kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<ISetupRepository>().To<SetupRepository>();
+            kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
+            
+        }
     }
 }

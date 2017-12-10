@@ -3,3 +3,4 @@ C:\dev\WebApp\CollectionManager\CollectionManager.Helpers\bin\Debug\CollectionMa
 C:\dev\WebApp\CollectionManager\CollectionManager.Helpers\obj\Debug\CollectionManager.Helpers.dll
 C:\dev\WebApp\CollectionManager\CollectionManager.Helpers\obj\Debug\CollectionManager.Helpers.pdb
 C:\dev\WebApp\CollectionManager\CollectionManager.Helpers\obj\Debug\CollectionManager.Helpers.csprojResolveAssemblyReference.cache
+C:\dev\WebApp\CollectionManager\CollectionManager.Helpers\obj\Debug\CollectionManager.Helpers.csproj.CoreCompileInputs.cache

@@ -11,3 +11,4 @@ C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\Collectio
 C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\CollectionManager.Data.dll.config
 C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.xml
 C:\dev\WebApp\CollectionManager\CollectionManager.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\dev\WebApp\CollectionManager\CollectionManager.Repository\obj\Debug\CollectionManager.Repository.csproj.CoreCompileInputs.cache

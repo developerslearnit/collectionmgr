@@ -82,3 +82,9 @@ C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\Ninject.Web.Common.xml
 C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\Ninject.Web.Mvc.xml
 C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Data.pdb
 C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Data.dll.config
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Helpers.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Security.dll
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Helpers.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Security.pdb
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\bin\CollectionManager.Security.dll.config
+C:\dev\WebApp\CollectionManager\CollectionManager.UI\obj\Debug\CollectionManager.UI.csproj.CoreCompileInputs.cache

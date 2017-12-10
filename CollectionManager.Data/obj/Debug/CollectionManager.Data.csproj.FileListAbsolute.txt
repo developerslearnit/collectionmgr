@@ -8,3 +8,4 @@ C:\dev\WebApp\CollectionManager\CollectionManager.Data\bin\Debug\EntityFramework
 C:\dev\WebApp\CollectionManager\CollectionManager.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\dev\WebApp\CollectionManager\CollectionManager.Data\bin\Debug\EntityFramework.xml
 C:\dev\WebApp\CollectionManager\CollectionManager.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\dev\WebApp\CollectionManager\CollectionManager.Data\obj\Debug\CollectionManager.Data.csproj.CoreCompileInputs.cache

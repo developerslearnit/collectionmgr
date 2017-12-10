@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,6 +160,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Controllers\customerController.cs" />
+    <Compile Include="Areas\admin\Controllers\usersController.cs" />
+    <Compile Include="Controllers\authController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +187,7 @@
     <Content Include="Content\assets\css\codemirror\theme\ambiance.css" />
     <Content Include="Content\assets\css\codemirror\theme\index.html" />
     <Content Include="Content\assets\css\colorpicker.css" />
+    <Content Include="Content\assets\css\datatables.min.css" />
     <Content Include="Content\assets\css\dropzone.css" />
     <Content Include="Content\assets\css\font-awesome.css" />
     <Content Include="Content\assets\css\font-awesome.min.css" />
@@ -195,6 +201,7 @@
     <Content Include="Content\assets\css\jquery.gritter.css" />
     <Content Include="Content\assets\css\jquery.tagsinput.css" />
     <Content Include="Content\assets\css\lato.css" />
+    <Content Include="Content\assets\css\mark.cssloader.css" />
     <Content Include="Content\assets\css\morris.css" />
     <Content Include="Content\assets\css\override.css" />
     <Content Include="Content\assets\css\prettyPhoto.css" />
@@ -208,6 +215,7 @@
     <Content Include="Content\assets\css\style.greyjoy.css" />
     <Content Include="Content\assets\css\style.inverse.css" />
     <Content Include="Content\assets\css\style.katniss.css" />
+    <Content Include="Content\assets\css\sweetalert2.min.css" />
     <Content Include="Content\assets\css\toggles.css" />
     <Content Include="Content\assets\css\weather-icons.min.css" />
     <Content Include="Content\assets\css\wysiwyg-color.css" />
@@ -381,7 +389,9 @@
     <Content Include="Content\assets\images\uploadfile%402x.png" />
     <Content Include="Content\assets\images\uploadfile.png" />
     <Content Include="Content\assets\images\user.png" />
+    <Content Include="Content\assets\js\accounting.min.js" />
     <Content Include="Content\assets\js\angular.min.js" />
+    <Content Include="Content\assets\js\AppUtils.js" />
     <Content Include="Content\assets\js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\assets\js\bootstrap-editable.min.js" />
     <Content Include="Content\assets\js\bootstrap-timepicker.min.js" />
@@ -683,6 +693,7 @@
     <Content Include="Content\assets\js\colorpicker.js" />
     <Content Include="Content\assets\js\custom.js" />
     <Content Include="Content\assets\js\dashboard.js" />
+    <Content Include="Content\assets\js\datatables.min.js" />
     <Content Include="Content\assets\js\dropzone.min.js" />
     <Content Include="Content\assets\js\flot\index.html" />
     <Content Include="Content\assets\js\flot\jquery.colorhelpers.min.js" />
@@ -733,6 +744,7 @@
     <Content Include="Content\assets\js\respond.min.js" />
     <Content Include="Content\assets\js\retina.min.js" />
     <Content Include="Content\assets\js\select2.min.js" />
+    <Content Include="Content\assets\js\sweetalert2.js" />
     <Content Include="Content\assets\js\toggles.min.js" />
     <Content Include="Content\assets\js\wysihtml5-0.3.0.min.js" />
     <Content Include="favicon.ico" />
@@ -755,6 +767,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\admin\Models\" />
+    <Folder Include="Areas\admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -874,10 +888,30 @@
     <Content Include="Views\Shared\_PageHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CollectionManager.Helpers\CollectionManager.Helpers.csproj">
+      <Project>{6026a360-86c0-4930-8dd5-78fdf284e822}</Project>
+      <Name>CollectionManager.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CollectionManager.Repository\CollectionManager.Repository.csproj">
       <Project>{3FC2D199-F927-4FE4-B626-C3C93922260B}</Project>
       <Name>CollectionManager.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CollectionManager.Security\CollectionManager.Security.csproj">
+      <Project>{b577d16d-2b7f-4ac4-9541-a8dd77228a98}</Project>
+      <Name>CollectionManager.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\admin\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\admin\Views\users\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\auth\login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\admin\Views\customer\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,3 +1,58 @@
 ﻿.panel-heading {
     padding:8px !important;
 }
+
+#searchHeader tr th{
+    padding:2px !important;
+}
+
+
+    #searchHeader .form-control {
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        padding: 5px !important;
+        height: auto;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-size: 13px;
+        height: 30px !important;
+        margin:0 !important;
+        width:100%;
+    }
+
+table thead.table-header {
+    background: #eee;
+}
+
+.modal-md {
+    width: 700px !important;
+}
+
+.modal-xmd {
+    width: 800px !important;
+}
+
+
+
+@media (min-width: 768px) {
+   .modal-md {
+        width: 700px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-xmd {
+        width: 800px !important;
+    }
+}
+
+select.select2{
+    width:100%;
+}
+
+.select2-container{
+    padding:0 !important;
+    border:none !important;
+}
